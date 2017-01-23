@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"> 
+    
+<hibernate-configuration>
+    <session-factory>
+    	<property name="hibernate.connection.driver_class">com.mysql.jdbc.driver</property>
+        <property name="hibernate.connection.password"></property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3307/gestion_scolarite/</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>        
+        <property name="hibernate.enable_lazy_load_no_trans">true</property>
+        
+        <mapping class="com.pfagestionnote.model.Admin" />
+        <mapping class="com.pfagestionnote.model.Etudiant" />
+        <mapping class="com.pfagestionnote.model.Groupe" />
+        <mapping class="com.pfagestionnote.model.Section" />
+        <mapping class="com.pfagestionnote.model.DirecteurEtude" />
+        <mapping class="com.pfagestionnote.model.PlanEtude" />
+        <mapping class="com.pfagestionnote.model.ChefDepartement" />
+        <mapping class="com.pfagestionnote.model.Note" />
+        <mapping class="com.pfagestionnote.model.Coordinateur" />
+        <mapping class="com.pfagestionnote.model.Enseignant" />
+        <mapping class="com.pfagestionnote.model.Module" />
+        <mapping class="com.pfagestionnote.model.Matiere" />
+        <mapping class="com.pfagestionnote.model.EtudiantHasMatiere" />
+        <mapping class="com.pfagestionnote.model.EtudiantHasMatiereId" />
+        <mapping class="com.pfagestionnote.model.ReleveNote" />
+        <mapping class="com.pfagestionnote.model.Departement" />
+        <mapping class="com.pfagestionnote.model.Absence" />
+        <mapping class="com.pfagestionnote.model.Role" />
+        <mapping class="com.pfagestionnote.model.User" />
+        <mapping class="com.pfagestionnote.model.UserStatus" />
+    </session-factory>         
+    
+</hibernate-configuration>

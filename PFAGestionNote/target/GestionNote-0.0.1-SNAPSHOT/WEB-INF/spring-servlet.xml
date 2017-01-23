@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- webjars ressources -->
+	<!-- <mvc:annotation-driven /> -->
+	<!-- end webjars -->
+	
+	<context:annotation-config />
+	<context:component-scan base-package="com.pfagestionnote" />
+	 
+	
+		
+	<!-- To prevent the back button -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="cacheSeconds" value="0"/>
+	</bean>
+	
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+		p:location="/WEB-INF/jdbc.properties" />
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close" p:driverClassName="${jdbc.driverClassName}"
+		p:url="${jdbc.databaseurl}" p:username="${jdbc.username}" p:password="${jdbc.password}" />
+	
+	<bean id="adminDaoImpl" class="com.pfagestionnote.dao.impl.AdminDaoImpl"></bean>
+	<bean id="absenceDaoImpl" class="com.pfagestionnote.dao.impl.AbsenceDaoImpl"></bean>
+	<bean id="chefDepartementDaoImpl" class="com.pfagestionnote.dao.impl.ChefDepartementDaoImpl"></bean>
+	<bean id="coordinateurDaoImpl" class="com.pfagestionnote.dao.impl.CoordinateurDaoImpl"></bean>
+	<bean id="directeurEtudeDaoImpl" class="com.pfagestionnote.dao.impl.DirecteurEtudeDaoImpl"></bean>
+	<bean id="enseignantDaoImpl" class="com.pfagestionnote.dao.impl.EnseignantDaoImpl"></bean>
+	<bean id="etudiantDaoImpl" class="com.pfagestionnote.dao.impl.EtudiantDaoImpl"></bean>
+	<bean id="etudiantHasMatiereDaoImpl" class="com.pfagestionnote.dao.impl.EtudiantHasMatiereDaoImpl"></bean>
+	<bean id="etudiantHasMatiereIdDaoImpl" class="com.pfagestionnote.dao.impl.EtudiantHasMatiereIdDaoImpl"></bean>
+	<bean id="groupeDaoImpl" class="com.pfagestionnote.dao.impl.GroupeDaoImpl"></bean>
+	<bean id="matiereDaoImpl" class="com.pfagestionnote.dao.impl.MatiereDaoImpl"></bean>
+	<bean id="moduleDaoImpl" class="com.pfagestionnote.dao.impl.ModuleDaoImpl"></bean>
+	<bean id="noteDaoImpl" class="com.pfagestionnote.dao.impl.NoteDaoImpl"></bean>
+	<bean id="planEtudeDaoImpl" class="com.pfagestionnote.dao.impl.PlanEtudeDaoImpl"></bean>
+	<bean id="releveNoteDaoImpl" class="com.pfagestionnote.dao.impl.ReleveNoteDaoImpl"></bean>
+	<bean id="sectionDaoImpl" class="com.pfagestionnote.dao.impl.SectionDaoImpl"></bean>
+	
+	<!-- declaration des entities -->
+	
+	<bean id="admin" class="com.pfagestionnote.model.Admin"></bean>
+	<bean id="groupe" class="com.pfagestionnote.model.Groupe"></bean>
+	<bean id="etudiant" class="com.pfagestionnote.model.Etudiant"></bean>
+	<bean id="absence" class="com.pfagestionnote.model.Absence"></bean>
+	<bean id="section" class="com.pfagestionnote.model.Section"></bean>
+	<bean id="matiere" class="com.pfagestionnote.model.Matiere"></bean>
+	
+	<!-- declaration controlleur -->
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+		<property name="configurationClass">
+			<value>org.hibernate.cfg.AnnotationConfiguration</value>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${jdbc.dialect}</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+	    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+	    <property name="prefix" value="/WEB-INF/jsp/"/>
+	    <property name="suffix" value=".jsp"/>
+	    
+	</bean>
+	<tx:annotation-driven />
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- Spring Internationalizations -->
+	
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="classpath:messages" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+	
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="defaultLocale" value="en" />
+	</bean>
+	
+	<bean id="localeChangeInterceptor"
+		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="language" />
+	</bean>
+	
+	<bean id="handlerMapping"
+    	class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+	    <property name="interceptors">
+	        <ref bean="localeChangeInterceptor" />
+	    </property>    
+	</bean>
+	
+	
+</beans>

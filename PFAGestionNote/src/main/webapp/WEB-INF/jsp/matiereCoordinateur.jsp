@@ -1,0 +1,77 @@
+<!-- Latest compiled and minified font-awesome -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Espace Coordinateur</title>
+</head>
+<body>
+<ul class="nav nav-tabs">
+	<li role="presentation"><a href="/PFAGestionNote/Coordinateur/">Accueil</a></li>
+	<li role="presentation"><a href="/PFAGestionNote/Coordinateur/">Profile</a></li>
+  	<li role="presentation"><a href="<c:url value='/Coordinateur_Etudiants'/>">Liste Etudiants</a></li>
+  	<li role="presentation"><a href="<c:url value='/Coordinateur_Enseignants'/>">Liste Enseignants</a></li>
+  	<li role="presentation" class="active"><a href="<c:url value='/Coordinateur_Groupes'/>">Liste Groupes</a></li>
+<li role="presentation"><a href="/PFAGestionNote/logout">Déconnecter</a></li>
+</ul>
+
+<h3>Gérer absences/moyenne : </h3>
+
+    <table class="table table-hover">
+    <tr>
+        <th>Nom de l'etudiant</th>
+        <th width="100">Matiere</th>
+        <th width="80">Ds</th>
+        <th width="80">Autre Note</th>
+        <th width="80">Examan</th>
+        <th width="80">Absence</th>
+        <th width="80">Moyenne</th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>Ben Abdallah Houssem Eddine</td>
+        <td>Cisco</td>
+        <td>Pas Encore</td>
+        <td>Pas Encore</td>
+        <td>Pas Encore</td>
+        <td><input type="text" type="text" style="width: 80px"><button>OK</button></td>
+        <td>Pas Encore</td>
+        <td><button>Calculer Moyenne</button></td>
+    </tr>
+    <tr>
+        <td>Ben Chaaben Ali</td>
+        <td>Cisco</td>
+        <td>Pas Encore</td>
+        <td>Pas Encore</td>
+        <td>Pas Encore</td>
+        <td><input type="text" type="text" style="width: 80px"><button>OK</button></td>
+        <td>Pas Encore</td>
+        <td><button>Calculer Moyenne</button></td>
+    </tr>
+    <tr>
+        <td>Gsaier Mohamed</td>
+        <td>Cisco</td>
+        <td>Pas Encore</td>
+        <td>Pas Encore</td>
+        <td>Pas Encore</td>
+        <td><input type="text" type="text" style="width: 80px"><button>OK</button></td>
+        <td>Pas Encore</td>
+        <td><button>Calculer Moyenne</button></td>
+    </tr>
+    <tr>
+        <td>Ghiloufi Youssef</td>
+        <td>Cisco</td>
+        <td>Pas Encore</td>
+        <td>Pas Encore</td>
+        <td>Pas Encore</td>
+        <td><input type="text" type="text" style="width: 80px"><button>OK</button></td>
+        <td>Pas Encore</td>
+        <td><button>Calculer Moyenne</button></td>
+    </tr>
+    </table>
+
+</body>
+</html>
